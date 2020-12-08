@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Naruto UZUMAKI",
+    "photo": "./img/naruto.jpg",
+    "characteristics": "Demon renard"
+  },
+  {
+    "name": "Sasuke UCHIHA",
+    "photo": "./img/sasuke.jpg",
+    "characteristics": "Sharingan"
+  },
+  {
+    "name": "Hinata HYUGA",
+    "photo": "./img/hinata.jpg",
+    "characteristics": "Byakugan"
+  },
+  { "name": "123456S", "photo": "1234567890", "characteristics": "1234567890" },
+  {
+    "name": "un nom hh",
+    "photo": "une photo hh",
+    "characteristics": "Des caractéristiques"
+  }
+]
