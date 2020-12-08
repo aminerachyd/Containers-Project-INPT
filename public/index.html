@@ -16,21 +16,34 @@
         <th>Caractéristiques</th>
       </tr>
       <tr>
-        <td>Naruto UZUMAKI</td>
-        <td><img src="./img/naruto.jpg" alt="" /></td>
-        <td>Demon renard</td>
+        <td>Saitama</td>
+        <td><img src="./img/saitama.png" alt="" /></td>
+        <td>Frappe fort, très fort</td>
       </tr>
       <tr>
-        <td>Sasuke UCHIHA</td>
-        <td><img src="./img/sasuke.png" alt="" /></td>
-        <td>Sharingan</td>
-      </tr>
-      <tr>
-        <td>Hinata HYUGA</td>
-        <td><img src="./img/hinata.png" alt="" /></td>
-        <td>Byakugan</td>
+        <td>Dio Brando</td>
+        <td><img src="./img/dio.png" alt="" /></td>
+        <td>Peut figer le temps</td>
       </tr>
     </table>
+
+    <form id="form">
+      <h2>Ajouter un nouveau personnage</h2>
+      <label for="#nom">Nom du personnage</label>
+      <input id="nom" type="text" placeholder="nom" /><br />
+      <label for="#photo">Photo du personnage</label>
+      <input type="file" id="photo" /><br />
+      <label for="#carac">Caractéristiques du personnage</label>
+      <textarea id="carac" name="carac" cols="30" rows="10"></textarea>
+      <br />
+      <input type="submit" value="Ajouter" />
+    </form>
+    <!-- Script pour utiliser axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"
+      integrity="sha512-bYkaBWaFtfPIMYt9+CX/4DWgfrjcHinjerNYxQmQx1VM76eUsPPKZa5zWV8KksVkBF/DaHSADCwil2J5Uq2ctA=="
+      crossorigin="anonymous"
+    ></script>
     <script src="js/index.js"></script>
   </body>
 </html>

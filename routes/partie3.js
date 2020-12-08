@@ -4,33 +4,42 @@ const fs = require("fs");
 const path = require("path");
 
 // Donneés du fichier JSON
-let initialData = require("../data/data.json");
+let currentData = require("../data/data.json");
 
 // Route pour récuperer les données
 router.get("/", (req, res) => {
-  res.send(data);
+  res.send(currentData);
 });
 
 // Route pour écrire des données dans le fichier JSON
 // On retourne le nouvel objet créé
 router.post("/", (req, res) => {
-  const newData = ({ name, photo, characteristics } = req.body);
-  initialData.push(newData);
+  // Récupération des fichiers de la requete
+  const photo = req.files.photo;
+  const { name, carac } = JSON.parse(req.body.json);
 
+  // const newData = ({ name, photo, characteristics } = req.body);
+  // currentData.push(newData);
+
+  // writeData(res, currentData);
+
+  // TODO je dois recevoir les images sous forme de form data
+  // Je dois déplacer les images dans le dossier ../public/img
+  // res.send(newData);
+});
+
+// La mini persistance de données
+const writeData = (res, data) => {
   fs.open(
     path.resolve(__dirname, "..", "data/data.json"),
     "w+",
     (err, fileDescriptor) => {
       if (!err & fileDescriptor) {
-        fs.writeFile(fileDescriptor, JSON.stringify(initialData), (err) => {
+        fs.writeFile(fileDescriptor, JSON.stringify(data), (err) => {
           if (!err) {
             // Fichier bien écrit
             fs.close(fileDescriptor, (err) => {
-              if (!err) {
-                //Fichier bien fermé
-                console.log("Bien fermé");
-                res.send(newData);
-              } else {
+              if (err) {
                 // Erreur dans la fermeture du fichier
                 console.log(err);
                 res.status(500).send("Server error");
@@ -49,6 +58,6 @@ router.post("/", (req, res) => {
       }
     }
   );
-});
+};
 
 module.exports = router;
