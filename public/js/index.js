@@ -28,22 +28,19 @@ const sendData = async () => {
   let photo = document.getElementById("photo").files[0];
   let carac = document.getElementById("carac").value;
 
-  console.log(name, photo, carac);
-
   let formData = new FormData();
 
   formData.append("photo", photo);
 
   formData.append("json", JSON.stringify({ name, carac }));
 
-  console.log(formData);
   const res = await axios.post("/partie3", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
-  console.log(res);
+  if (res) retrieveData().then(() => renderData());
 };
 
 // Récupération des données

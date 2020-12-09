@@ -4,7 +4,11 @@ const fs = require("fs");
 const path = require("path");
 
 // Donneés du fichier JSON
-let currentData = require("../data/data.json");
+try {
+  let currentData = require("../data/data.json");
+} catch (error) {
+  currentData = [];
+}
 
 // Route pour récuperer les données
 router.get("/", (req, res) => {
@@ -18,14 +22,25 @@ router.post("/", (req, res) => {
   const photo = req.files.photo;
   const { name, carac } = JSON.parse(req.body.json);
 
-  // const newData = ({ name, photo, characteristics } = req.body);
-  // currentData.push(newData);
+  photo.mv(
+    path.resolve(__dirname, "..", "public/img") + `/${photo.name}`,
+    (err) => {
+      if (err) {
+        throw err;
+      } else {
+        // const newData = ({ name, photo, characteristics } = req.body);
+        const newData = {
+          name: name,
+          photo: "../img/" + photo.name,
+          characteristics: carac,
+        };
+        currentData.push(newData);
+        writeData(res, currentData);
 
-  // writeData(res, currentData);
-
-  // TODO je dois recevoir les images sous forme de form data
-  // Je dois déplacer les images dans le dossier ../public/img
-  // res.send(newData);
+        res.send(newData);
+      }
+    }
+  );
 });
 
 // La mini persistance de données
