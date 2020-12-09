@@ -3,11 +3,10 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-let currentData = require("../data/data.json");
-
 // Route pour récuperer les données
 router.get("/", (req, res) => {
-  res.send(currentData);
+  //FIXME use database here
+  // res.send(currentData);
 });
 
 // Route pour écrire des données dans le fichier JSON
@@ -17,6 +16,7 @@ router.post("/", (req, res) => {
   const photo = req.files.photo;
   const { name, carac } = JSON.parse(req.body.json);
 
+  // Déplacement de l'image
   photo.mv(
     path.resolve(__dirname, "..", "public/img") + `/${photo.name}`,
     (err) => {
@@ -28,14 +28,16 @@ router.post("/", (req, res) => {
           photo: "../img/" + photo.name,
           characteristics: carac,
         };
-        currentData.push(newData);
+        // FIXME use database here
+        // currentData.push(newData);
 
-        writeData(res, currentData, newData);
+        // writeData(res, currentData, newData);
       }
     }
   );
 });
 
+// TODO A changer pour MySQL
 // La mini persistance de données
 const writeData = (res, data, newData) => {
   fs.open(
