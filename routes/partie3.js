@@ -3,12 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-// Donneés du fichier JSON
-try {
-  let currentData = require("../data/data.json");
-} catch (error) {
-  currentData = [];
-}
+let currentData = require("../data/data.json");
 
 // Route pour récuperer les données
 router.get("/", (req, res) => {
@@ -28,23 +23,21 @@ router.post("/", (req, res) => {
       if (err) {
         throw err;
       } else {
-        // const newData = ({ name, photo, characteristics } = req.body);
         const newData = {
           name: name,
           photo: "../img/" + photo.name,
           characteristics: carac,
         };
         currentData.push(newData);
-        writeData(res, currentData);
 
-        res.send(newData);
+        writeData(res, currentData, newData);
       }
     }
   );
 });
 
 // La mini persistance de données
-const writeData = (res, data) => {
+const writeData = (res, data, newData) => {
   fs.open(
     path.resolve(__dirname, "..", "data/data.json"),
     "w+",
@@ -58,18 +51,23 @@ const writeData = (res, data) => {
                 // Erreur dans la fermeture du fichier
                 console.log(err);
                 res.status(500).send("Server error");
+                return;
+              } else {
+                res.send(newData);
               }
             });
           } else {
             // Erreur dans l'ecriture du fichier
             console.log(err);
             res.status(500).send("Server error");
+            return;
           }
         });
       } else {
         // Une erreur d'ouverture du fichier
         console.log(err);
         res.status(500).send("Server error");
+        return;
       }
     }
   );
