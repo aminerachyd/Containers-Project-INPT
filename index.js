@@ -16,7 +16,7 @@ app.use("/partie3", require("./routes/partie3"));
 const PORT = 5000;
 
 let con = mysql.createConnection({
-  host: "localhost",
+  host: "mysql-container",
   user: "root",
   password: "root",
 });
@@ -28,4 +28,5 @@ con.connect((err) => {
     console.log("MySQL Database connected");
   }
 });
+
 app.listen(PORT, () => console.log(`Server started at port ${PORT} ...`));
