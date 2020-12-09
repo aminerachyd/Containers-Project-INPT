@@ -1,7 +1,7 @@
 module.exports = {
-  // XXX uncomment this
-  // host: "mysql-container",
-  host: "localhost",
+  // TODO uncomment this
+  // host: "localhost",
+  host: "mysql-container",
   user: "root",
   password: "root",
   database: "db",
