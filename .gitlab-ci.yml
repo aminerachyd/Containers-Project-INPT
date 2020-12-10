@@ -1,0 +1,9 @@
+image: aminerachyd/projet-conteneurs-partie6
+
+stages: test
+
+test:
+  stage: test
+  script:
+    - npm install -g mocha
+    - npm run test
