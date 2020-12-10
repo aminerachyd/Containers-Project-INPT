@@ -1,17 +1,31 @@
-image: aminerachyd/projet-conteneurs-partie6
+# image: aminerachyd/projet-conteneurs-partie6
+
+# stages:
+#   - test
+
+# before_script:
+#   - docker info
+#   - apk update
+#   - apk upgrade
+#   - apk add python python-dev py-pip build-base
+#   - pip install docker-compose
+
+# test:
+#   stage: test
+#   script:
+#     - npm install -g mocha
+#     - docker-compose up
+image: docker
+
+services:
+  - docker:dind
 
 stages:
   - test
 
-before_script:
-  - docker info
-  - apk update
-  - apk upgrade
-  - apk add python python-dev py-pip build-base
-  - pip install docker-compose
-
 test:
   stage: test
   script:
-    - npm install -g mocha
-    - docker-compose up
+    - sudo apt-get install -y python-pip
+    - pip install docker-compose
+    - docker-compose up --build
