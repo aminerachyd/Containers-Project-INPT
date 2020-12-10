@@ -19,7 +19,7 @@ test:
     - npm run test
     - apt update
     # Install docker
-    - apt-get remove docker docker-engine docker.io -y
+    # - apt-get remove docker docker-engine docker.io -y
     - apt install docker.io -y
     - systemctl start docker
     # - apt install python3-pip -y
