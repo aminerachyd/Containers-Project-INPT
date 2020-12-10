@@ -3,15 +3,21 @@ image: aminerachyd/projet-conteneurs-partie6
 stages:
   - test
 
+services:
+  - mysql:latest
+  - docker:dind
+
+variables:
+  mysql_database: db
+  mysql_root_password: root
+
 test:
   stage: test
-  services:
-    - mysql:latest
-  variables:
-    MYSQL_DATABASE: db
-    MYSQL_ROOT_PASSWORD: root
   script:
     - npm install
     - npm install -g mocha
     - npm run test
-    - node index
+    - sudo curl -L --fail https://github.com/docker/compose/releases/download/1.27.4/run.sh -o /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose
+    - docker-compose up
+    # - node index
