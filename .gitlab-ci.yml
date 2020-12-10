@@ -1,6 +1,7 @@
 image: aminerachyd/projet-conteneurs-partie6
 
-stages: test
+stages:
+  - test
 
 test:
   stage: test
