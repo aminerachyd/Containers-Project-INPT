@@ -40,8 +40,6 @@ const sendData = async () => {
     },
   });
 
-  // FIXME Update rendering
-  console.log(res.data);
   if (res) retrieveData().then(() => renderData());
 };
 
