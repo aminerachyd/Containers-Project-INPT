@@ -18,8 +18,8 @@ test:
     - npm install -g mocha
     - npm run test
     - apt update
-    - apt install python-pip -y
-    - pip install docker-compose
+    - apt install python3-pip -y
+    - pip3 install docker-compose
     - docker-compose up
     # - node index
     # - curl -L --fail https://github.com/docker/compose/releases/download/1.27.4/run.sh -o /usr/local/bin/docker-compose
