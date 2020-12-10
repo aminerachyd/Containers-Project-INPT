@@ -3,9 +3,15 @@ image: aminerachyd/projet-conteneurs-partie6
 stages:
   - test
 
+before_script:
+  - docker info
+  - apk update
+  - apk upgrade
+  - apk add python python-dev py-pip build-base
+  - pip install docker-compose
+
 test:
   stage: test
   script:
-    - apk add --update py-pip && pip install docker-compose
     - npm install -g mocha
     - docker-compose up
