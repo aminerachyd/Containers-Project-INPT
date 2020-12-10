@@ -4,17 +4,13 @@ stages:
   - test
 
 test:
-  image: docker:latest
   stage: test
   services:
-    - docker:dind
-  before_script:
-    - docker info
-    - apk update
-    - apk upgrade
-    - apk add python python-dev py-pip build-base
-    - pip install docker-compose
+    - mysql:latest
+  variables:
+    MYSQL_DATABASE: db
+    MYSQL_ROOT_PASSWORD: root
   script:
     - npm install -g mocha
-    - docker-compose up
     - npm run test
+    - node index
