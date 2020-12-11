@@ -13,4 +13,6 @@ variables:
 test:
   stage: test
   script:
+    - node install
+    - node install -g mocha
     - node index
