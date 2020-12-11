@@ -15,27 +15,26 @@ describe("TEST : /POST Ajout d'un personnage", () => {
   it("Doit ajouter un personnage", (done) => {
     const file = fs.readFileSync("test.jpg");
 
-    chai
-      .request(app)
-      .post("/partie3")
-      .attach("photo", file, "naruto-test.jpg")
-      .field(
-        "json",
-        '{"name":"Naruto du test","carac":"Carac du Naruto du test"}'
-      )
-      .end((err, res) => {
-        if (err) throw err;
-        res.should.have.status(200);
-        res.body.should.be.a("object");
-
-        fs.close(file, (err) => {
-          if (err) {
-            throw err;
-          } else {
+    fs.readFile("test.jpg", (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        chai
+          .request(app)
+          .post("/partie3")
+          .attach("photo", data, "naruto-test.jpg")
+          .field(
+            "json",
+            '{"name":"Naruto du test","carac":"Carac du Naruto du test"}'
+          )
+          .end((err, res) => {
+            if (err) throw err;
+            res.should.have.status(200);
+            res.body.should.be.a("object");
             done();
-          }
-        });
-      });
+          });
+      }
+    });
   });
 });
 
