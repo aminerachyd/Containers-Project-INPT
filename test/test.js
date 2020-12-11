@@ -2,6 +2,8 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const assert = require("assert");
+const path = require("path");
+
 const app = require("../index");
 
 const should = chai.should();
@@ -10,10 +12,16 @@ chai.use(chaiHttp);
 
 describe("/POST Ajout d'un personnage", () => {
   it("Doit ajouter un personnage", (done) => {
+    const json = {
+      name: "Naruto du test",
+      carac: "Carac du naruto du test",
+    };
+
     chai
       .request(app)
       .post("/partie3")
-      .send({ test: "test" })
+      .attach(photo, "./naruto-test.jpg", "naruto-test.jpg")
+      .send(json)
       .end((err, res) => {
         if (err) throw err;
         res.should.have.status(200);
