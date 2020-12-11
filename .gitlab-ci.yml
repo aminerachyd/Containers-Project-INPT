@@ -23,7 +23,7 @@ deploy:
   image: docker:latest
   stage: deploy
   script:
-    - docker login --username_ --password=$HEROKU_API_KEY registry.heroky.com
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
     - docker pull aminerachyd/projet-conteneurs-partie6
     - docker tag aminerachyd/projet-conteneurs-partie6 registry.heroku.com/projet-conteneurs-partie7/web
     - docker push registry.heroku.com/projet-conteneurs-partie7/web
