@@ -25,7 +25,6 @@ app.listen(PORT, () => {
       throw err;
     } else {
       console.log("DB connectée");
-      // TODO Have to make tests now
       con.query("CREATE DATABASE IF NOT EXISTS db", (err) => {
         if (err) {
           throw err;
@@ -54,3 +53,6 @@ app.listen(PORT, () => {
     }
   });
 });
+
+// For testing
+module.exports = app;
