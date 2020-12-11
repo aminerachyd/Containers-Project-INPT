@@ -22,7 +22,8 @@ describe("/POST Ajout d'un personnage", () => {
       .request(app)
       .post("/partie3")
       .attach("photo", fs.readFileSync("test.jpg"), "naruto-test.jpg")
-      .field("json", json)
+      .attach("json", json)
+      // .field("json", json)
       .end((err, res) => {
         if (err) throw err;
         res.should.have.status(200);
