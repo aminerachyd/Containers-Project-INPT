@@ -38,7 +38,7 @@ describe("/GET Liste des personnages", () => {
       .end((err, res) => {
         if (err) throw err;
         res.should.have.status(200);
-        res.body.should.be.a("object");
+        res.body.should.be.a("array");
         done();
       });
   });
