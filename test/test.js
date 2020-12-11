@@ -9,20 +9,17 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe("/POST Ajout d'un personnage", () => {
-  if (
-    ("Doit ajouter un personnage",
-    (done) => {
-      chai
-        .request(app)
-        .post("/partie3")
-        .send({ test: "test" })
-        .end((err, res) => {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        });
-    })
-  );
+  it("Doit ajouter un personnage", (done) => {
+    chai
+      .request(app)
+      .post("/partie3")
+      .send({ test: "test" })
+      .end((err, res) => {
+        if (err) throw err;
+        res.should.have.status(200);
+        done();
+      });
+  });
 });
 
 describe("/GET Liste des personnages", () => {
