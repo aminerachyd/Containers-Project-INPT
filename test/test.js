@@ -43,7 +43,3 @@ describe("/GET Liste des personnages", () => {
       });
   });
 });
-
-describe("Dummy test", () => {
-  it("Should return 2", () => assert.equal(1 + 1, 2));
-});
