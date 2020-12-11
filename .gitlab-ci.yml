@@ -13,6 +13,7 @@ variables:
 test:
   stage: test
   script:
+    - mk test.jpg
     - npm install
     - npm install -g mocha
     - npm run test

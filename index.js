@@ -58,5 +58,4 @@ app.listen(PORT, () => {
 });
 
 // For testing
-fs.copyFileSync(path.resolve(__dirname, "test/naruto-test.jpg"), "/");
 module.exports = app;
