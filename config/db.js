@@ -1,5 +1,5 @@
 module.exports = {
-  // TODO uncomment this
+  // XXX uncomment this
   // host: "localhost",
   // host: "mysql-container-p5",
   host: "mysql",
