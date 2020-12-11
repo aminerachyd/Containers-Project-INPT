@@ -17,3 +17,4 @@ test:
     - npm install
     - npm install -g mocha
     - npm run test
+    - mocha --exit
