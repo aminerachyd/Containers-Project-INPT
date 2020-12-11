@@ -41,15 +41,15 @@ app.listen(PORT, () => {
                     throw err;
                   } else {
                     console.log("Base de données initialisée");
+                    con.end((err) => {
+                      if (err) throw err;
+                    });
                   }
                 }
               );
             }
           });
         }
-      });
-      con.end((err) => {
-        if (err) throw err;
       });
     }
   });
