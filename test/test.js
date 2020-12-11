@@ -3,6 +3,7 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const assert = require("assert");
 const path = require("path");
+const fs = require("fs");
 
 const app = require("../index");
 
@@ -20,7 +21,7 @@ describe("/POST Ajout d'un personnage", () => {
     chai
       .request(app)
       .post("/partie3")
-      .attach("photo", "./naruto-test.jpg", "naruto-test.jpg")
+      .attach("photo", fs.readFileSync("./naruto-test.jpg"), "naruto-test.jpg")
       .send(json)
       .end((err, res) => {
         if (err) throw err;
