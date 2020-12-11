@@ -3,9 +3,6 @@ const app = express();
 const db = require("./config/db");
 const mysql = require("mysql");
 
-const fs = require("fs");
-const path = require("path");
-
 const fileupload = require("express-fileupload");
 
 app.use("/", express.static("public"));

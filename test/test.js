@@ -1,20 +1,15 @@
-// TODO Have to make tests now
 const chai = require("chai");
 const chaiHttp = require("chai-http");
-const assert = require("assert");
-const path = require("path");
 const fs = require("fs");
 
 const app = require("../index");
 
-const should = chai.should();
+chai.should();
 
 chai.use(chaiHttp);
 
 describe("TEST : /POST Ajout d'un personnage", () => {
   it("Doit ajouter un personnage", (done) => {
-    const file = fs.readFileSync("test.jpg");
-
     fs.readFile("test.jpg", (err, data) => {
       if (err) {
         throw err;
