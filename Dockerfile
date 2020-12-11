@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm install mocha --save-dev
+
 COPY . .
 
 EXPOSE 5000
