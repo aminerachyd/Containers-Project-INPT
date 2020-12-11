@@ -15,7 +15,9 @@ describe("/POST Ajout d'un personnage", () => {
       chai
         .request(app)
         .post("/partie3")
+        .send({ test: "test" })
         .end((err, res) => {
+          if (err) throw err;
           res.should.have.status(200);
           done();
         });
@@ -24,5 +26,18 @@ describe("/POST Ajout d'un personnage", () => {
 });
 
 describe("/GET Liste des personnages", () => {
+  it("Doit retourner la liste des personnages", (done) => {
+    chai
+      .request(app)
+      .get("/partie3")
+      .end((err, res) => {
+        if (err) throw err;
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
+
+describe("Dummy test", () => {
   it("Should return 2", () => assert.equal(1 + 1, 2));
 });
