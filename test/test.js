@@ -13,16 +13,14 @@ chai.use(chaiHttp);
 
 describe("/POST Ajout d'un personnage", () => {
   it("Doit ajouter un personnage", (done) => {
-    const json = {
-      name: "Naruto du test",
-      carac: "Carac du naruto du test",
-    };
-
     chai
       .request(app)
       .post("/partie3")
       .attach("photo", fs.readFileSync("test.jpg"), "naruto-test.jpg")
-      .attach("json", json)
+      .field(
+        "json",
+        '{"name":"Naruto du test","carac":"Carac du Naruto du test"}'
+      )
       // .field("json", json)
       .end((err, res) => {
         if (err) throw err;
