@@ -11,12 +11,14 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("/POST Ajout d'un personnage", () => {
+describe("TEST : /POST Ajout d'un personnage", () => {
   it("Doit ajouter un personnage", (done) => {
+    const file = fs.readFileSync("test.jpg");
+
     chai
       .request(app)
       .post("/partie3")
-      .attach("photo", fs.readFileSync("test.jpg"), "naruto-test.jpg")
+      .attach("photo", file, "naruto-test.jpg")
       .field(
         "json",
         '{"name":"Naruto du test","carac":"Carac du Naruto du test"}'
@@ -25,12 +27,19 @@ describe("/POST Ajout d'un personnage", () => {
         if (err) throw err;
         res.should.have.status(200);
         res.body.should.be.a("object");
-        done();
+
+        fs.close(file, (err) => {
+          if (err) {
+            throw err;
+          } else {
+            done();
+          }
+        });
       });
   });
 });
 
-describe("/GET Liste des personnages", () => {
+describe("TEST : /GET Liste des personnages", () => {
   it("Doit retourner la liste des personnages", (done) => {
     chai
       .request(app)
