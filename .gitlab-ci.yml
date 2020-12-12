@@ -25,17 +25,17 @@ variables:
 #     - npm install -g mocha
 #     - npm run test
 
-push:
-  stage: push
-  image: docker:latest
-  script:
-    - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
-    - docker build -t aminerachyd/projet-conteneurs-partie6 .
-    - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
-    - docker push $HEROKU_REGISTRY_IMAGE
-    # Deployer sur heroku avec cette commande
-    # Pas de heroku dans le container dind
-    # - heroku container:release web --app $HEROKU_APP_NAME
+# push:
+#   stage: push
+#   image: docker:latest
+#   script:
+#     - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
+#     - docker build -t aminerachyd/projet-conteneurs-partie6 .
+#     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
+#     - docker push $HEROKU_REGISTRY_IMAGE
+#     # Deployer sur heroku avec cette commande
+#     # Pas de heroku dans le container dind
+#     # - heroku container:release web --app $HEROKU_APP_NAME
 
 deploy:
   stage: deploy
