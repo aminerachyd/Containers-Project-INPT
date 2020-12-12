@@ -25,12 +25,10 @@ variables:
 
 deploy:
   stage: deploy
-  image: docker:latest
+  image: docker:git
   services:
     - docker:dind
   script:
-    - apk add git
-
     - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
