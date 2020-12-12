@@ -18,7 +18,7 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT} ...`);
 
-  let con = mysql.createConnection(db);
+  // let con = mysql.createConnection(db);
 
   // con.connect((err) => {
   //   if (err) {
