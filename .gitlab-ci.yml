@@ -1,6 +1,6 @@
 stages:
-  # - test
-  # - push
+  - test
+  - push
   - deploy
 
 services:
@@ -15,27 +15,27 @@ variables:
   HEROKU_AUTH_TOKEN: ${HEROKU_AUTH_TOKEN}
   HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}/web
 
-# # Stage de test
-# test:
-#   stage: test
-#   image: aminerachyd/projet-conteneurs-partie6
-#   script:
-#     - touch test.jpg
-#     - npm install
-#     - npm install -g mocha
-#     - npm run test
+# Stage de test
+test:
+  stage: test
+  image: aminerachyd/projet-conteneurs-partie6
+  script:
+    - touch test.jpg
+    - npm install
+    - npm install -g mocha
+    - npm run test
 
-# # Stage de push vers le Heroku registry
-# push:
-#   stage: push
-#   image: docker:latest
-#   services:
-#     - docker:dind
-#   script:
-#     - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
-#     - docker build -t aminerachyd/projet-conteneurs-partie6 .
-#     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
-#     - docker push $HEROKU_REGISTRY_IMAGE
+# Stage de push vers le Heroku registry
+push:
+  stage: push
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker build -t aminerachyd/projet-conteneurs-partie6 .
+    - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
+    - docker push $HEROKU_REGISTRY_IMAGE
 
 # Stage de déploiement Heroku
 deploy:
