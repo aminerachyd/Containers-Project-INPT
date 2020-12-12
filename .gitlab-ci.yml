@@ -13,7 +13,7 @@ variables:
   DOCKER_DRIVER: overlay
   HEROKU_APP_NAME: projet-conteneurs-partie7
   HEROKU_AUTH_TOKEN: ${HEROKU_AUTH_TOKEN}
-  HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROK}
+  HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}/web
 
 # test:
 #   stage: test
