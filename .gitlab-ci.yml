@@ -25,16 +25,11 @@ variables:
 
 deploy:
   stage: deploy
-  image: docker:stable
+  services: docker:dind
   script:
-    - apk add --no-cache curl
-    - docker build
-      --tag $HEROKU_REGISTRY_IMAGE
-      --file ./Dockerfile
-      "."
-    - docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker login --email aminerachyd99@gmail.com --password $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
-    - ./release.sh
 
     # - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
     # - docker pull aminerachyd/projet-conteneurs-partie6
