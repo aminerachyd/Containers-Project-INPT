@@ -1,7 +1,9 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const fs = require("fs");
+
 const db = require("../config/db");
+const mysql = require("mysql");
 
 const app = require("../index");
 
