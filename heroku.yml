@@ -1,6 +1,6 @@
 setup:
   addons:
-    - plan: cleardb
+    - plan: jawsdb-maria
       as: mysql-container-p5
 
 build:
