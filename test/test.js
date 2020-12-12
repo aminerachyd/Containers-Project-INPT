@@ -1,6 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const fs = require("fs");
+const db = require("../config/db");
 
 const app = require("../index");
 
@@ -26,6 +27,27 @@ describe("TEST : /POST Ajout d'un personnage", () => {
             if (err) throw err;
             res.should.have.status(200);
             res.body.should.be.a("object");
+
+            // On vide la base de données
+            let con = mysql.createConnection(db);
+
+            con.connect((err) => {
+              if (err) {
+                throw err;
+              } else {
+                console.log("DB connectée");
+                con.query("DELETE FROM personnage", (err) => {
+                  if (err) {
+                    throw err;
+                  } else {
+                    con.end((err) => {
+                      if (err) throw err;
+                    });
+                  }
+                });
+              }
+            });
+
             done();
           });
       }
