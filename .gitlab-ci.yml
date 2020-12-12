@@ -25,6 +25,7 @@ variables:
 
 deploy:
   stage: deploy
+  image: docker:latest
   services:
     - docker:dind
   script:
