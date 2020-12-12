@@ -29,7 +29,7 @@ deploy:
   services:
     - docker:dind
   script:
-    - docker login --email aminerachyd99@gmail.com --password $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
 
