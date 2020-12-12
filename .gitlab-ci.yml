@@ -28,6 +28,10 @@ deploy:
   image: docker:git
   services:
     - docker:dind
+  before_script:
+    - apk add ruby-dev
+    - gem install dpl --pre
+    - gem install bundler
   script:
     - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
@@ -37,8 +41,6 @@ deploy:
     # Pas de heroku dans le container dind
     # - heroku container:release web --app $HEROKU_APP_NAME
 
-    - apk add ruby-dev
-    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_AUTH_TOKEN
 
     # - apk add --no-cache curl
