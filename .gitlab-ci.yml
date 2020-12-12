@@ -1,5 +1,3 @@
-image: aminerachyd/projet-conteneurs-partie6
-
 stages:
   # - test TODO uncomment this
   # - push
@@ -19,6 +17,7 @@ variables:
 
 # test:
 #   stage: test
+#   image: aminerachyd/projet-conteneurs-partie6
 #   script:
 #     - touch test.jpg
 #     - npm install
