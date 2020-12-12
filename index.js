@@ -25,31 +25,19 @@ app.listen(PORT, () => {
       throw err;
     } else {
       console.log("DB connectée");
-      con.query("CREATE DATABASE IF NOT EXISTS db", (err) => {
-        if (err) {
-          throw err;
-        } else {
-          con.query("USE db;", (err) => {
-            if (err) {
-              throw err;
-            } else {
-              con.query(
-                "CREATE TABLE IF NOT EXISTS personnage (id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,name varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,photo varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,characteristics text COLLATE utf8mb4_unicode_ci);",
-                (err) => {
-                  if (err) {
-                    throw err;
-                  } else {
-                    console.log("Base de données initialisée");
-                    con.end((err) => {
-                      if (err) throw err;
-                    });
-                  }
-                }
-              );
-            }
-          });
+      con.query(
+        "CREATE TABLE IF NOT EXISTS personnage (id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,name varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,photo varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,characteristics text COLLATE utf8mb4_unicode_ci);",
+        (err) => {
+          if (err) {
+            throw err;
+          } else {
+            console.log("Base de données initialisée");
+            con.end((err) => {
+              if (err) throw err;
+            });
+          }
         }
-      });
+      );
     }
   });
 });
