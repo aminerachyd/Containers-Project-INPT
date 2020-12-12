@@ -15,13 +15,13 @@ variables:
   HEROKU_AUTH_TOKEN: ${HEROKU_AUTH_TOKEN}
   HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROK}
 
-test:
-  stage: test
-  script:
-    - touch test.jpg
-    - npm install
-    - npm install -g mocha
-    - npm run test
+# test:
+#   stage: test
+#   script:
+#     - touch test.jpg
+#     - npm install
+#     - npm install -g mocha
+#     - npm run test
 
 deploy:
   stage: deploy
