@@ -1,3 +1,8 @@
+setup:
+  addons:
+    - plan: cleardb:ignite
+      as: mysql
+
 build:
   docker:
     web: Dockerfile
