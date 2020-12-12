@@ -37,7 +37,7 @@ push:
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
 
-# Stage de déploiement Heroku
+# Stage de déploiement vers Heroku
 deploy:
   stage: deploy
   script:
