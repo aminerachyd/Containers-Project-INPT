@@ -33,7 +33,7 @@ deploy:
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
-    - heroky container:release web --app $HEROKU_APP_NAME
+    - heroku container:release web --app $HEROKU_APP_NAME
 
     # - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
     # - docker pull aminerachyd/projet-conteneurs-partie6
