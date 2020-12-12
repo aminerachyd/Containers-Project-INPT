@@ -25,7 +25,7 @@ variables:
 
 deploy:
   stage: deploy
-  image: docker:latest
+  image: docker:stable
   script:
     - apk add --no-cache curl
     - docker build
