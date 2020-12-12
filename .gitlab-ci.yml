@@ -1,7 +1,7 @@
 image: aminerachyd/projet-conteneurs-partie6
 
 stages:
-  - test
+  # - test TODO uncomment this
   - deploy
 services:
   - name: mysql:latest
@@ -10,6 +10,10 @@ services:
 variables:
   MYSQL_DATABASE: db
   MYSQL_ROOT_PASSWORD: root
+  DOCKER_DRIVER: overlay
+  HEROKU_APP_NAME: projet-conteneurs-partie7
+  HEROKU_AUTH_TOKEN: ${HEROKU_AUTH_TOKEN}
+  HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROK}
 
 test:
   stage: test
@@ -20,14 +24,23 @@ test:
     - npm run test
 
 deploy:
-  image: docker:latest
   stage: deploy
+  image: docker:latest
   script:
-    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
-    - docker pull aminerachyd/projet-conteneurs-partie6
-    - docker tag aminerachyd/projet-conteneurs-partie6 registry.heroku.com/projet-conteneurs-partie7/web
-    - docker push registry.heroku.com/projet-conteneurs-partie7/web
-    - docker run -rm -e HEROKU_API_KEY=$HEROKU_API_KEY wingrunr21/alpine-heroku-cli container:release web --app projet-conteneurs-partie7
+    - apk add --no-cache curl
+    - docker build
+      --tag $HEROKU_REGISTRY_IMAGE
+      --file ./Dockerfile
+      "."
+    - docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker push $HEROKU_REGISTRY_IMAGE
+    - ./release.sh
+
+    # - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
+    # - docker pull aminerachyd/projet-conteneurs-partie6
+    # - docker tag aminerachyd/projet-conteneurs-partie6 registry.heroku.com/projet-conteneurs-partie7/web
+    # - docker push registry.heroku.com/projet-conteneurs-partie7/web
+    # - docker run -rm -e HEROKU_API_KEY=$HEROKU_API_KEY wingrunr21/alpine-heroku-cli container:release web --app projet-conteneurs-partie7
 # deploy:
 #   image: ruby:latest
 #   stage: deploy
