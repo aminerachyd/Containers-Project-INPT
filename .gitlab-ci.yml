@@ -15,6 +15,7 @@ variables:
   HEROKU_AUTH_TOKEN: ${HEROKU_AUTH_TOKEN}
   HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}/web
 
+# Stage de test
 test:
   stage: test
   image: aminerachyd/projet-conteneurs-partie6
@@ -24,6 +25,7 @@ test:
     - npm install -g mocha
     - npm run test
 
+# Stage de push vers le Heroku registry
 push:
   stage: push
   image: docker:latest
@@ -34,10 +36,8 @@ push:
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
-    # Deployer sur heroku avec cette commande
-    # Pas de heroku dans le container dind
-    # - heroku container:release web --app $HEROKU_APP_NAME
 
+# Stage de déploiement Heroku
 deploy:
   stage: deploy
   script:
