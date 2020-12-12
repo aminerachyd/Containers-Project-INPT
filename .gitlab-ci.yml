@@ -27,6 +27,8 @@ test:
 push:
   stage: push
   image: docker:latest
+  services:
+    - docker:dind
   script:
     - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
