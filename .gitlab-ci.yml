@@ -33,22 +33,11 @@ deploy:
     - docker build -t aminerachyd/projet-conteneurs-partie6 .
     - docker tag aminerachyd/projet-conteneurs-partie6 $HEROKU_REGISTRY_IMAGE
     - docker push $HEROKU_REGISTRY_IMAGE
-
+    # Deployer sur heroku avec cette commande
+    # Pas de heroku dans le container dind
     # - heroku container:release web --app $HEROKU_APP_NAME
 
-    # - docker login --username=_ --password=$HEROKU_API_KEY registry.heroky.com
-    # - docker pull aminerachyd/projet-conteneurs-partie6
-    # - docker tag aminerachyd/projet-conteneurs-partie6 registry.heroku.com/projet-conteneurs-partie7/web
-    # - docker push registry.heroku.com/projet-conteneurs-partie7/web
-    # - docker run -rm -e HEROKU_API_KEY=$HEROKU_API_KEY wingrunr21/alpine-heroku-cli container:release web --app projet-conteneurs-partie7
-# deploy:
-#   image: ruby:latest
-#   stage: deploy
-#   script:
-#     # Installer heroku
-#     # se connecter a heroku
-#     # login heroku and deploy app with heroku push:web --app
-#     - apt-get update -qy
-#     - apt-get install -y ruby-dev
-#     - gem install dpl
-#     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_AUTH_TOKEN
